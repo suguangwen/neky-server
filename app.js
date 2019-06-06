@@ -2,14 +2,11 @@ import express from 'express';
 import logger from 'morgan';
 import Path from 'path'
 import engines from 'consolidate';
-import connectMongo from 'connect-mongo';
 import cookieParser from 'cookie-parser'
 import session from 'express-session';
 import config from 'config';
 import apis from 'apis';
 import serverRouter from 'modules/server-router';
-import fetch from 'modules/fetch';
-import db from 'db';
 import bodyParser from 'body-parser'
 
 const app = express();
@@ -51,10 +48,6 @@ let routerData = {
 serverRouter(app, routerData)
 
 app.use('/public', express.static(Path.join(__dirname, './public')));
-app.use('/static', express.static(Path.join(__dirname, './views/static')));
-app.use('/serviceWorker.js', express.static('./serviceWorker.js'));
-app.use('/photo', express.static(Path.join(__dirname, './photo')));
-app.use('/advertImage', express.static(Path.join(__dirname, './advertImage')));
 
 app.listen(config.port);
 
